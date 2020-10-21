@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 // import ProductDetail from '../views/ProductDetail.vue'
 import Login from '../views/Login.vue'
 import CartList from '../components/CartList.vue'
-// import Register from '../views/Register.vue'
+import Register from '../views/Register.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +23,11 @@ const routes = [
     path: '/cart/:UserId',
     name: 'CartList',
     component: CartList
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   }
 ]
 

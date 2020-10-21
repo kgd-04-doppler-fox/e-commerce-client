@@ -7,10 +7,11 @@
         <span class="bar"></span>
       </label>
       <ul class="nav-list">
-        <li><router-link to="/home">home</router-link></li>
+        <li><router-link to="/">home</router-link></li>
         <li><router-link to="/cart/:UserId">cart</router-link></li>
         <li><router-link to="/login">login</router-link></li>
         <li><router-link to="/logout">logout</router-link></li>
+        <li><router-link to="/register">register</router-link></li>
       </ul>
     </nav>
     <router-view></router-view>

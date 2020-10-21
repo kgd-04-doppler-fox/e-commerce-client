@@ -15,7 +15,7 @@
         </div>
         <input type="submit" value="Sign in">
         <div class="signup_link">
-          Don't have an account yet? <a href="">Register</a>
+          Don't have an account yet? <a><router-link to="/register">Register</router-link></a>
         </div>
       </form>
     </div>
