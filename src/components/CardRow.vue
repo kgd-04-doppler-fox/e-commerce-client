@@ -11,7 +11,7 @@
       </v-btn>
       <v-card-title>{{product.Product.name}}</v-card-title>
       <v-card-subtitle>{{product.Product.description}}</v-card-subtitle>
-      <v-card-text>Rp {{getPrice(product.subtotal)}}</v-card-text>
+      <v-card-title>{{formatedPrice}}</v-card-title>
         <v-col>
         <v-btn icon style="margin-left: 70%" @click="deleteCart(product.id)">
           <span class="material-icons">delete</span>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import formatPrice from '../helpers/formatPrice'
 export default {
   name: 'CartRow',
   data () {
@@ -39,14 +40,21 @@ export default {
     }
   },
   props: ['product'],
+  computed: {
+    formatedPrice () {
+      return formatPrice(this.product.Product.price)
+    }
+  },
   methods: {
     addAmount () {
       const payload = {
         id: this.product.id,
         price: this.product.Product.price
       }
+      console.log(payload)
       this.$store.dispatch('editCartPlus', payload)
         .then(() => {
+          console.log('masuk cart row')
           this.$store.dispatch('fetchCart')
         })
         .catch(err => {
@@ -88,9 +96,6 @@ export default {
           console.log(err)
         })
     }
-  },
-  created () {
-    this.$store.dispatch('fetchCart')
   }
 }
 </script>

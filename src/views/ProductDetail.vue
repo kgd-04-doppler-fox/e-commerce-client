@@ -17,7 +17,7 @@
           </v-col>
           <div class="hl my-auto"></div>
           <v-col>
-            <v-card-title>Rp {{getPrice(product.price)}}</v-card-title>
+            <v-card-title>{{getPrice}}</v-card-title>
           </v-col>
         </v-row>
         <hr>
@@ -45,6 +45,7 @@
 
 <script>
 import TransactionBar from '../components/TransactionBar'
+import formatPrice from '../helpers/formatPrice'
 
 export default {
   name: 'ProductDetail',
@@ -62,23 +63,22 @@ export default {
     },
     amount () {
       return this.$store.state.amount
+    },
+    getPrice () {
+      return formatPrice(this.product.price)
     }
   },
   methods: {
     plus () {
       const stock = this.product.stock
       if (this.amount < stock) {
-        this.$store.dispatch('addAmount')
+        this.$store.commit('ADD_AMOUNT', 1)
       }
     },
     minus () {
       if (this.amount > 1) {
-        this.$store.dispatch('minusAmount')
+        this.$store.commit('MIN_AMOUNT', 1)
       }
-    },
-    getPrice (price) {
-      this.$store.dispatch('getPrice', price)
-      return this.$store.state.subtotal
     }
   },
   created () {
@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
   #prod {
-    margin-top: 15%;
+    margin-top: 6%;
   }
   #amount {
     margin-left: 10%;

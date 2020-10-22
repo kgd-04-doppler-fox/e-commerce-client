@@ -9,8 +9,11 @@ export default new Vuex.Store({
     step: 1,
     products: [],
     images: [
-      'https://dkpzhs366ovzp.cloudfront.net/media_root/filer_public_thumbnails/filer_public/2019/10/15/2019-banner-clearance-sale-mobile.jpg__600x800_q85_subsampling-2.jpg',
-      'https://dxclnrbvyw82b.cloudfront.net/images/di/upload/20191125/43907d2c-6a57-4726-bb62-552008a6e9e1/30/DsCTCTECLandingPage%20(5).jpg'
+      'https://www.gastankmagazine.com/assets/imagecache/contentDetail/style-point-penting-kenakan-selvedge-denim-.jpg',
+      'https://embed.widencdn.net/img/redwing/c9j0zhejrq/645x330px/RWH_Web_HomePage_S1_Men_Desk_1935x990?crop=no',
+      'https://embed.widencdn.net/img/redwing/kw3rpl5kr7/768px/RWH_Home_P2_OctSawmill_Desk_2271x1150?crop=no',
+      'https://sourcingjournal.com/wp-content/uploads/2018/03/Amsterdamdenimdays.jpg',
+      'https://carvedinblue.tencel.com/wp-content/uploads/2019/10/ADD_BLUEPRINT_APR17_0007.jpg'
     ],
     selectedProduct: {},
     amount: 0,
@@ -53,7 +56,7 @@ export default new Vuex.Store({
     },
     signup (context, payload) {
       return axios({
-        url: 'http://localhost:3000/register',
+        url: 'https://frozen-inlet-96730.herokuapp.com/register',
         method: 'POST',
         data: {
           name: payload.name,
@@ -64,7 +67,7 @@ export default new Vuex.Store({
     },
     signin (context, payload) {
       return axios({
-        url: 'http://localhost:3000/login',
+        url: 'https://frozen-inlet-96730.herokuapp.com/login',
         method: 'POST',
         data: {
           email: payload.email,
@@ -74,7 +77,7 @@ export default new Vuex.Store({
     },
     fetchProducts (context) {
       axios({
-        url: 'http://localhost:3000/products',
+        url: 'https://frozen-inlet-96730.herokuapp.com/products',
         method: 'GET'
       })
         .then(({ data }) => {
@@ -86,7 +89,7 @@ export default new Vuex.Store({
     },
     fetchProductById (context, id) {
       axios({
-        url: 'http://localhost:3000/products/' + id,
+        url: 'https://frozen-inlet-96730.herokuapp.com/products/' + id,
         method: 'GET'
       })
         .then(({ data }) => {
@@ -99,15 +102,9 @@ export default new Vuex.Store({
     changeIsLogin (context, value) {
       context.commit('SET_IS_LOGIN', value)
     },
-    addAmount (context) {
-      context.commit('ADD_AMOUNT', 1)
-    },
-    minusAmount (context) {
-      context.commit('MIN_AMOUNT', 1)
-    },
     addToCart (context, payload) {
       axios({
-        url: 'http://localhost:3000/cart/' + payload.ProductId,
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/' + payload.ProductId,
         method: 'POST',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -126,8 +123,9 @@ export default new Vuex.Store({
         })
     },
     fetchCart (context) {
+      console.log('masuuk')
       axios({
-        url: 'http://localhost:3000/cart',
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart',
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -141,8 +139,9 @@ export default new Vuex.Store({
         })
     },
     editCartPlus (context, payload) {
+      console.log(payload, 'dari edit cart <<<<<')
       return axios({
-        url: 'http://localhost:3000/cart/' + payload.id + '?edit=plus',
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/' + payload.id + '?edit=plus',
         method: 'PATCH',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -154,7 +153,7 @@ export default new Vuex.Store({
     },
     editCartMinus (context, payload) {
       return axios({
-        url: 'http://localhost:3000/cart/' + payload.id + '?edit=minus',
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/' + payload.id + '?edit=minus',
         method: 'PATCH',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -166,60 +165,16 @@ export default new Vuex.Store({
     },
     deleteCart (context, id) {
       axios({
-        url: 'http://localhost:3000/cart/' + id,
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/' + id,
         method: 'DELETE',
         headers: {
           access_token: localStorage.access_token
         }
       })
     },
-    getPrice (context, price) {
-      const stringPrice = String(price)
-      let formatedPrice = ''
-      for (let i = 0; i < stringPrice.length; i++) {
-        if (stringPrice.length < 3) {
-          if (i === 0) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        } else if (stringPrice.length === 5) {
-          if (i === 1) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        } else if (stringPrice.length === 6) {
-          if (i === 2) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        } else if (stringPrice.length === 7) {
-          if (i === 0 || i === 3) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        } else if (stringPrice.length === 8) {
-          if (i === 1 || i === 4) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        } else if (stringPrice.length === 8) {
-          if (i === 2 || i === 5) {
-            formatedPrice += stringPrice[i] + '.'
-          } else {
-            formatedPrice += stringPrice[i]
-          }
-        }
-      }
-      context.commit('SET_SUBTOTAL', formatedPrice)
-    },
     checkout (context, id) {
       return axios({
-        url: 'http://localhost:3000/cart/checkout/' + id,
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/checkout/' + id,
         method: 'PATCH',
         headers: {
           access_token: localStorage.access_token
@@ -228,7 +183,7 @@ export default new Vuex.Store({
     },
     buy (context, payload) {
       return axios({
-        url: 'http://localhost:3000/products/buy/' + payload.ProductId,
+        url: 'https://frozen-inlet-96730.herokuapp.com/products/buy/' + payload.ProductId,
         method: 'PATCH',
         headers: {
           access_token: localStorage.access_token

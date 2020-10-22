@@ -1,9 +1,12 @@
 <template>
-  <v-footer dark height="auto" id="footer">
+  <v-footer height="auto" id="footer" color="#1A237E">
     <div id="socmed">
     <v-btn v-for="icon in icons" :key="icon" class="mx-3" dark icon >
       <v-icon size="24px">{{icon}}</v-icon>
     </v-btn>
+    <div>
+      <v-card-text class="text-center" style="color:white">Anchorman 2020</v-card-text>
+    </div>
     </div>
   </v-footer>
 </template>

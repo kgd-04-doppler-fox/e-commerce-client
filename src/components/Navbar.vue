@@ -2,18 +2,16 @@
   <div id="navbar-container">
       <v-toolbar id="navbar">
           <v-toolbar-title>
-            <router-link to="/" style="color:white; text-decoration:none">Anchorman</router-link>
+            <router-link to="/" id="navTitle">Anchorman</router-link>
           </v-toolbar-title>
+            <span class="material-icons" style="color:white">anchor</span>
           <v-spacer></v-spacer>
           <v-btn icon>
-            <span class="material-icons" color="white" @click="cart">local_grocery_store</span>
+            <span class="material-icons" style="color: white" @click="cart">local_grocery_store</span>
           </v-btn>
           <div class="hl"></div>
           <v-btn color="white" id="login" v-if="!isLogin">
             <span @click="signin">Signin</span>
-          </v-btn>
-          <v-btn color="white" id="register" v-if="!isLogin">
-            <span @click="register">Signup</span>
           </v-btn>
           <v-btn color="white" v-else>
             <span @click="logout">Logout</span>
@@ -70,7 +68,7 @@ export default {
   z-index: 999;
  }
  #navbar {
-    background-color: blueviolet;
+    background-color:#1A237E;
  }
  #navTitle {
     font-family: 'Nunito', sans-serif;
@@ -86,5 +84,9 @@ export default {
     background: rgb(224, 224, 224);
     margin: 0px 0px 0px 16px;
     margin-right: 2%;
+ }
+ #navTitle {
+   color:white;
+   text-decoration:none;
  }
 </style>

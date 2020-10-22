@@ -1,9 +1,9 @@
 <template>
   <v-carousel
+    :show-arrows="false"
     cycle
     height="250"
     hide-delimiter-background
-    show-arrows-on-hover
     id="carousel"
   >
     <v-carousel-item

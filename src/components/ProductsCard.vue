@@ -1,10 +1,10 @@
 <template>
-    <v-col cols="12" sm="8" md="2">
+    <v-col cols="12" sm="8" md="2" class="text-center">
         <v-card height="100%" @click="productDetail(product.id)">
         <v-img :src="product.imageUrl" aspect-ratio="1"></v-img>
-        <v-card-title style="font-size: 0.5rem">{{product.name}}</v-card-title>
+        <v-card-title style="font-size: 0.6rem; ">{{product.name}}</v-card-title>
         <v-card-subtitle style="font-size: 0.5rem">{{product.description}}</v-card-subtitle>
-        <v-card-subtitle style="font-size: 1rem; text-align:center">Rp {{getPrice(product.price)}}</v-card-subtitle>
+        <v-card-subtitle style="font-size: 1rem; text-align:center">{{getPrice()}}</v-card-subtitle>
         <v-divider class="mx-4"></v-divider>
         <v-card-text class="mx-auto">Stock: {{product.stock}}</v-card-text>
         </v-card>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import formatPrice from '../helpers/formatPrice'
 export default {
   name: 'ProductCard',
   props: ['product'],
@@ -19,9 +20,8 @@ export default {
     productDetail (id) {
       this.$router.push('/product-detail/' + id)
     },
-    getPrice (price) {
-      this.$store.dispatch('getPrice', price)
-      return this.$store.state.subtotal
+    getPrice () {
+      return formatPrice(this.product.price)
     }
   }
 }

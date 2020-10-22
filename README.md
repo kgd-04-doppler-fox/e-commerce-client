@@ -1,5 +1,8 @@
 # e-commerce-client
 
+## Deployment Link
+https://ecommerce-1750d.web.app/
+
 ## Project setup
 ```
 npm install
