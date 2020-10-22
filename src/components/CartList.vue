@@ -4,7 +4,7 @@
     <div class="col-lg-8">
       <div class="card wish-list mb-3">
         <div class="card-body">
-          <h5 class="mb-4">Cart (<span>2</span> items)</h5>
+          <h5 class="mb-4">Cart (<span>{{ carts.length }}</span> items)</h5>
           <CartItem
             v-for="cart in carts"
             :key="cart.id"
@@ -46,24 +46,15 @@
       <!-- Card -->
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="mb-3">The total amount of</h5>
+          <h5 class="mb-3">The total amount of Cart</h5>
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-              Temporary amount
-              <span>$25.98</span>
+              Total price
+              <span>Rp. 270000</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
               Shipping
               <span>Free</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-              <div>
-                <strong>The total amount of</strong>
-                <strong>
-                  <p class="mb-0">(including VAT)</p>
-                </strong>
-              </div>
-              <span><strong>$53.98</strong></span>
             </li>
           </ul>
           <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to checkout</button>
@@ -101,11 +92,6 @@
 import CartItem from './CartItem.vue'
 export default {
   name: 'CartList',
-  data () {
-    return {
-      value: 0
-    }
-  },
   components: {
     CartItem
   },

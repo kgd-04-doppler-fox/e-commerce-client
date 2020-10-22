@@ -1,10 +1,9 @@
 <template>
   <div class="product my-2 mx-2 col-lg-3">
-    <div class="sides">
+    <div class="sides" @click.prevent="toDetail(product.id)">
       <div class="front">
         <img
           :src="product.imageUrl"
-          @click.prevent="toDetail(product.id)"
           alt="product">
         <div class="text-block">
             <h5>{{ product.name }}</h5>

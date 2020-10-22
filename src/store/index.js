@@ -14,11 +14,11 @@ export default new Vuex.Store({
     cart: []
   },
   mutations: {
+    setLoggedIn (state, payload) {
+      state.isLoggedIn = payload.isLoggedIn
+    },
     setErrMsg (state, payload) {
       state.errMsg = payload
-    },
-    setLoggedIn (state, payload) {
-      state.isLoggedIn = payload.loggedIn
     },
     setAllProduct (state, payload) {
       state.allProduct = payload
@@ -53,8 +53,8 @@ export default new Vuex.Store({
         }
       })
         .then(({ data }) => {
+          context.commit('setLoggedIn', { isLoggedIn: true })
           localStorage.setItem('token', data.token)
-          context.commit('setLoggedIn', { loggedIn: true })
           router.push('/')
         })
         .catch(err => {
@@ -97,13 +97,19 @@ export default new Vuex.Store({
         })
     },
     addToCart (context, payload) {
-      return server({
+      server({
         method: 'POST',
-        url: `/products/add/${payload}`,
+        url: `/customerProduct/${payload}`,
         headers: {
           token: localStorage.getItem('token')
         }
       })
+        .then(() => {
+          router.push('/cart')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     showCart (context, payload) {
       server({
@@ -115,6 +121,40 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('setCart', data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    setCartItem (context, payload) {
+      server({
+        method: 'PATCH',
+        url: `/customerProduct/${payload.ProductId}`,
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        data: {
+          quantity: payload.value
+        }
+      })
+        .then(() => {
+          console.log('cart updated')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    deleteCart (context, payload) {
+      server({
+        method: 'DELETE',
+        url: `/cart/${payload}`,
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(() => {
+          console.log(`cart dgn id ${payload} di hapus`)
+          router.push('/cart')
         })
         .catch(err => {
           console.log(err)

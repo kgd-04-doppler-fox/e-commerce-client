@@ -19,6 +19,7 @@
         <p class="pt-1">Dummy product description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, sapiente illo. Sit
           error voluptas repellat rerum quidem, soluta enim perferendis voluptates laboriosam. Distinctio,
           officia quis dolore quos sapiente tempore alias.</p>
+        <button type="button" @click.prevent="back" class="btn btn-primary btn-md mr-1 mb-2">Back</button>
         <button type="button" @click.prevent="addToCart(product.id)" class="btn btn-outline-primary btn-md mr-1 mb-2"><i
           class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
       </div>
@@ -43,6 +44,9 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    back () {
+      this.$router.push('/')
     }
   },
   computed: {

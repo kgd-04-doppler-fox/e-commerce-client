@@ -9,7 +9,7 @@
       <ul class="nav-list">
         <li><router-link to="/">home</router-link></li>
         <li><router-link to="/cart">cart</router-link></li>
-        <li v-if="!loggedIn"><router-link to="/login">login</router-link></li>
+        <li v-if="!isLoggedIn"><router-link to="/login">login</router-link></li>
         <li v-else><a @click.prevent="logout">logout</a></li>
       </ul>
     </nav>
@@ -21,7 +21,7 @@
 export default {
   name: 'App',
   computed: {
-    loggedIn () {
+    isloggedIn () {
       return this.$store.state.isLoggedIn
     }
   },
@@ -46,6 +46,13 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    }
+  },
+  created () {
+    if (localStorage.getItem('token')) {
+      this.$store.commit('setLoggedIn', { isLoggedIn: true })
+    } else {
+      this.$store.commit('setLoggedIn', { isLoggedIn: false })
     }
   }
 }
