@@ -28,11 +28,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <CartList
+                  <CartItem
                     v-for="cartProduct in cartProducts"
                     :key="cartProduct.id"
                     :cartProduct="cartProduct"
-                  ></CartList>
+                  ></CartItem>
                     <tr>
                     <th scope="row" class="border-0">
                       <div class="p-2">
@@ -57,7 +57,7 @@
 
 <script>
 import Navbar from '../components/Navbar'
-import CartList from '../components/CartList'
+import CartItem from '../components/CartItem'
 export default {
   name: 'Cart',
   computed: {
@@ -84,7 +84,7 @@ export default {
   },
   components: {
     Navbar,
-    CartList
+    CartItem
   },
   created () {
     this.$store.dispatch('fetchCart')

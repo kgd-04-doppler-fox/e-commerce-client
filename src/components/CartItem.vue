@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'CartList',
+  name: 'CartItem',
   props: ['cartProduct'],
   computed: {
   },
@@ -38,7 +38,10 @@ export default {
       this.$store.dispatch('setAmount', { id, updatedAmount })
     },
     deleteItem (id) {
-      this.$store.dispatch('deleteItem', id)
+      const answer = window.confirm('are you sure?')
+      if (answer === true) {
+        this.$store.dispatch('deleteItem', id)
+      }
     }
   }
 }

@@ -31,7 +31,7 @@ export default new Vuex.Store({
   actions: {
     fetchProducts (context) {
       axios({
-        url: 'http://localhost:3000/products',
+        url: 'https://immense-sea-20718.herokuapp.com/products',
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -46,7 +46,7 @@ export default new Vuex.Store({
     },
     register (context, payload) {
       axios({
-        url: 'http://localhost:3000/register',
+        url: 'https://immense-sea-20718.herokuapp.com/register',
         method: 'post',
         data: {
           name: payload.name,
@@ -63,7 +63,7 @@ export default new Vuex.Store({
     },
     fetchCart (context) {
       axios({
-        url: 'http://localhost:3000/cart',
+        url: 'https://immense-sea-20718.herokuapp.com/cart',
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -78,7 +78,7 @@ export default new Vuex.Store({
     },
     addToCart (context, payload) {
       axios({
-        url: `http://localhost:3000/cart/${payload}`,
+        url: `https://immense-sea-20718.herokuapp.com/cart/${payload}`,
         method: 'POST',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -102,7 +102,7 @@ export default new Vuex.Store({
     },
     deleteItem (context, payload) {
       axios({
-        url: `http://localhost:3000/cart/${payload}`,
+        url: `https://immense-sea-20718.herokuapp.com/cart/${payload}`,
         method: 'DELETE',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -117,7 +117,7 @@ export default new Vuex.Store({
     },
     setAmount (context, payload) {
       axios({
-        url: `http://localhost:3000/cart/${payload.id}`,
+        url: `https://immense-sea-20718.herokuapp.com/cart/${payload.id}`,
         method: 'PATCH',
         headers: {
           access_token: localStorage.getItem('access_token')

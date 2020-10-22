@@ -48,7 +48,7 @@ export default {
   methods: {
     login () {
       axios({
-        url: 'http://localhost:3000/login',
+        url: 'https://immense-sea-20718.herokuapp.com/login',
         method: 'POST',
         data: {
           email: this.email,
