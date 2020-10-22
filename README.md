@@ -1,5 +1,10 @@
 # e-commerce-client
 
+## Deployed
+```
+https://e-kommerce-clientele-side.web.app
+```
+
 ## Project setup
 ```
 npm install
