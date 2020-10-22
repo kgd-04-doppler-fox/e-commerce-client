@@ -1,7 +1,7 @@
 # e-commerce-client
 
 ## Deployment Link
-https://ecommerce-1750d.web.app/
+https://anchorman-7c3d9.web.app/
 
 ## Project setup
 ```
