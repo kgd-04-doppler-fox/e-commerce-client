@@ -8,10 +8,9 @@
       </label>
       <ul class="nav-list">
         <li><router-link to="/">home</router-link></li>
-        <li><router-link to="/cart/:UserId">cart</router-link></li>
-        <li><router-link to="/login">login</router-link></li>
-        <li><router-link to="/logout">logout</router-link></li>
-        <li><router-link to="/register">register</router-link></li>
+        <li><router-link to="/cart">cart</router-link></li>
+        <li v-if="!loggedIn"><router-link to="/login">login</router-link></li>
+        <li v-else><a @click.prevent="logout">logout</a></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -20,7 +19,35 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    loggedIn () {
+      return this.$store.state.isLoggedIn
+    }
+  },
+  methods: {
+    logout () {
+      this.$swal({
+        title: 'Are you sure to sign out?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff9321',
+        cancelButtonColor: '#00c9b7',
+        confirmButtonText: 'Sign me out'
+      })
+        .then((result) => {
+          if (result.isConfirmed === false) {
+            this.$router.push('/')
+          } else {
+            this.$router.push('/login')
+            localStorage.clear()
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
 }
 </script>
 

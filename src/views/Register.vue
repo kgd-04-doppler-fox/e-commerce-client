@@ -1,39 +1,44 @@
 <template>
   <section class="register-form">
     <h1 class="mt-4 text-center">Register</h1>
+    <div class="d-flex justify-content-center" v-if="errMsg">
+      <div class="alert alert-warning mx-2 w-25 text-center" role="alert">
+        <a>{{ errMsg }}</a>
+      </div>
+    </div>
     <div class="center">
-      <form class="pt-3" style="margin-top: -5rem;">
+      <form @submit.prevent="register" class="pt-3" style="margin-top: -5rem;">
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" v-model="firstName" required>
           <span></span>
           <label>First name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" v-model="lastName" required>
           <span></span>
           <label>Last name</label>
         </div>
         <div class="txt_field">
-          <input type="email" required>
+          <input type="email" v-model="email" required>
           <span></span>
           <label>Email</label>
         </div>
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" v-model="phoneNumber" required>
           <span></span>
           <label>Phone number</label>
         </div>
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" v-model="deliveryAddress" required>
           <span></span>
           <label>Delivery address</label>
         </div>
         <div class="txt_field">
-          <input type="password" required>
+          <input type="password" v-model="password" required>
           <span></span>
           <label>Password</label>
         </div>
-        <input type="submit" value="Sign in">
+        <input type="submit" value="Register">
         <div class="signup_link">
           Already have an account? <a><router-link to="/login">Login</router-link></a>
         </div>
@@ -44,7 +49,35 @@
 
 <script>
 export default {
-  name: 'Register'
+  name: 'Register',
+  data () {
+    return {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phoneNumber: '',
+      deliveryAddress: ''
+    }
+  },
+  computed: {
+    errMsg () {
+      return this.$store.state.errMsg
+    }
+  },
+  methods: {
+    register () {
+      const payload = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        phoneNumber: this.phoneNumber,
+        deliveryAddress: this.deliveryAddress
+      }
+      this.$store.dispatch('register', payload)
+    }
+  }
 }
 </script>
 

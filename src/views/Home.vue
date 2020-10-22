@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Carousel></Carousel>
-    <ProductList></ProductList>
+    <ProductList :products="allProduct"></ProductList>
   </div>
 </template>
 
@@ -13,6 +13,14 @@ export default {
   components: {
     Carousel,
     ProductList
+  },
+  created () {
+    this.$store.dispatch('fetchAllProduct')
+  },
+  computed: {
+    allProduct () {
+      return this.$store.state.allProduct
+    }
   }
 }
 </script>

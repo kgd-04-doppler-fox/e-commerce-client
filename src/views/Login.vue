@@ -2,14 +2,17 @@
   <section class="login-form">
     <div class="center">
       <h1 class="mt-4">Login</h1>
-      <form>
+      <div class="alert alert-warning mx-2" role="alert" v-if="errMsg">
+        <a>{{ errMsg }}</a>
+      </div>
+      <form @submit.prevent="login">
         <div class="txt_field">
-          <input type="text" required>
+          <input type="text" v-model="email" required>
           <span></span>
           <label>Email</label>
         </div>
         <div class="txt_field">
-          <input type="password" required>
+          <input type="password" v-model="password" required>
           <span></span>
           <label>Password</label>
         </div>
@@ -24,7 +27,27 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', payload)
+    }
+  },
+  computed: {
+    errMsg () {
+      return this.$store.state.errMsg
+    }
+  }
 }
 </script>
 
