@@ -1,8 +1,8 @@
 <template>
-  <b-row>
-      <li class="card col-10" style="width: 18rem;">
+  <div>
+      <li class="card col-sm-10" style="width: 18rem;">
         <img :src="product.img_url"
-        class="mr-3 rounded product:hover"
+        class="mr-3 rounded"
         alt="cover"
         width="100%">
         <div class="media-body p-1">
@@ -13,7 +13,7 @@
             <p class="text-muted">{{product.description}}</p>
             <p class="text-muted">Stock: {{product.stock}}</p>
             <p class="text-muted">USD {{product.price}}</p>
-            <button class="mt-2 btn btn-pink float-right p-2 rounded text-light shadow"
+            <button class="btn btn-pink float-right rounded text-light shadow"
             style="font-size:10px"
             @click.prevent="addCart(product.id)"
             >Add To Cart</button>
@@ -23,7 +23,7 @@
         </div>
         </div>
       </li>
-  </b-row>
+  </div>
 </template>
 
 <script>
@@ -60,7 +60,7 @@ export default {
         })
         .catch(err => {
           console.log(err)
-          this.$store.commit('SET_ERROR', err.response.data.err.name)
+          this.$store.commit('SET_ERROR', 'Login First!')
         })
     }
   }

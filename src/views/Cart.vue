@@ -7,7 +7,7 @@
             <th scope="col">Image</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
-            <th scope="col">Stock</th>
+            <th scope="col">Amount</th>
             <th scope="col" style="min-width: 100px">Action</th>
         </tr>
     </thead>

@@ -71,7 +71,7 @@ export default {
         }
       })
         .then(({ data }) => {
-          console.log('user dibuat')
+          this.$store.commit('SET_ERROR', 'You can login now')
         })
         .catch(err => {
           this.$store.commit('SET_ERROR', err.response.data.msg)

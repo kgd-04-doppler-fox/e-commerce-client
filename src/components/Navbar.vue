@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" @click.prevent="goToHome">
         <img src="https://www.flaticon.com/svg/static/icons/svg/332/332507.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         Kommerce Millenial Shop
         </a>
@@ -55,6 +55,9 @@ export default {
       this.$store.commit('SET_LOGIN', {
         loggedIn: false
       })
+    },
+    goToHome () {
+      this.$router.push('/')
     }
   }
 }

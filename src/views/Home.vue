@@ -1,14 +1,16 @@
 <template>
   <div class="home">
     <section id="home-page" class="container">
-        <div class="row justify-content-center">
+        <div class="justify-content-center">
         <div>
             <h4 class="text-center">Our best products selection</h4>
-            <div class="row">
-            <ProductCard v-for="product in products"
-            :key="product.id"
-            :product="product"
-            />
+            <div class="container-fluid">
+              <div class="row">
+                <ProductCard v-for="product in products"
+                :key="product.id"
+                :product="product"
+                class="row"/>
+              </div>
             </div>
         </div>
         </div>
@@ -35,13 +37,5 @@ export default {
 </script>
 
 <style>
-.row{
-    display: flex;
-    flex-flow: row;
 
-/* perfect centering */
-    justify-content: center;
-    align-items: center;
-    align-content: center;;
-}
 </style>

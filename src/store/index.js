@@ -52,7 +52,7 @@ export default new Vuex.Store({
           context.commit('SET_PRODUCTS', data.product)
         })
         .catch(err => {
-          console.log(err)
+          context.commit('SET_ERROR', err)
         })
     },
     fetchCarts (context) {
@@ -67,7 +67,7 @@ export default new Vuex.Store({
           context.commit('SET_CARTS', data.cart)
         })
         .catch(err => {
-          console.log(err)
+          context.commit('SET_ERROR', err)
         })
     },
     getHistories (context) {
@@ -83,7 +83,7 @@ export default new Vuex.Store({
           context.commit('SET_HISTORIES', data.cart)
         })
         .catch(err => {
-          console.log(err)
+          context.commit('SET_ERROR', err)
         })
     }
   }
