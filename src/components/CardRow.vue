@@ -51,7 +51,6 @@ export default {
         id: this.product.id,
         price: this.product.Product.price
       }
-      console.log(payload)
       this.$store.dispatch('editCartPlus', payload)
         .then(() => {
           console.log('masuk cart row')
@@ -71,7 +70,7 @@ export default {
           this.$store.dispatch('fetchCart')
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     },
     deleteCart (id) {
@@ -80,7 +79,7 @@ export default {
           this.$store.dispatch('fetchCart')
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     },
     getPrice (price) {
@@ -93,7 +92,7 @@ export default {
           this.$store.dispatch('fetchCart')
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     }
   }

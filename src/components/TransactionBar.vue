@@ -2,7 +2,7 @@
   <div id="transactionBar-container">
   <v-toolbar id="transactionbar"  color="#1A237E">
     <v-spacer></v-spacer>
-    <v-btn color="#8C9EFF" fab small prepend-icon="shoping" id="cart" @click="addCart">
+    <v-btn color="#8C9EFF" fab small prepend-icon="shoping" id="cart" @click.prevent="addCart">
       <span class="material-icons">local_grocery_store</span>
     </v-btn>
     <v-btn color="#8C9EFF" id="cart" @click.prevent="buy">

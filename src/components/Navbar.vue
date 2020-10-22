@@ -6,6 +6,9 @@
           </v-toolbar-title>
             <span class="material-icons" style="color:white">anchor</span>
           <v-spacer></v-spacer>
+          <v-btn icon @click="changeMode">
+            <span class="material-icons" style="color:white" >{{brightnessIcon}}</span>
+          </v-btn>
           <v-btn icon>
             <span class="material-icons" style="color: white" @click="cart">local_grocery_store</span>
           </v-btn>
@@ -41,11 +44,23 @@ export default {
       } else {
         this.$router.push('/login')
       }
+    },
+    changeMode () {
+      if (this.$store.state.backgroundColor === 'black') {
+        this.$store.commit('SET_BACKGROUND_COLOR', 'white')
+        this.$store.commit('SET_BRIGHTNESS_ICON', 'bedtime')
+      } else {
+        this.$store.commit('SET_BACKGROUND_COLOR', 'black')
+        this.$store.commit('SET_BRIGHTNESS_ICON', 'brightness_5')
+      }
     }
   },
   computed: {
     isLogin () {
       return this.$store.state.isLogin
+    },
+    brightnessIcon () {
+      return this.$store.state.brightnessIcon
     }
   },
   created () {

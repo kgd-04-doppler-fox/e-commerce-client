@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{background: backgroundColor}">
     <v-main>
       <v-row align="center" justify="center" md="">
             <v-window v-model="step">
@@ -10,7 +10,7 @@
                     <v-col class="col-md-8">
                     <v-card-text class="col-md-12">
                         <h1>Login</h1>
-                        <p :style="{color: colorMsg}" class="mt-3">{{loginMsg}}</p>
+                        <p :style="{color: colorMsg}" class="mt-3" id="loginMsg">{{loginMsg}}</p>
                         <v-form>
                           <v-text-field
                           label="email"
@@ -19,6 +19,7 @@
                           type="text"
                           color="#1565C0"
                           v-model="email"
+                          @click="colorMsg = 'transparent'"
                           />
                           <v-text-field
                           label="password"
@@ -27,6 +28,7 @@
                           type="password"
                           color="#1565C0"
                           v-model="password"
+                          @click="colorMsg = 'transparent'"
                           required
                           />
                           <v-btn color="indigo darken-4" class="btn-block col-12" style="color:white" @click="signin">Sign in</v-btn>
@@ -69,6 +71,9 @@ export default {
   computed: {
     step () {
       return this.$store.state.step
+    },
+    backgroundColor () {
+      return this.$store.state.backgroundColor
     }
   },
   methods: {
@@ -85,9 +90,10 @@ export default {
           this.$store.dispatch('changeIsLogin', true)
           this.$router.push('/')
         })
-        .catch(err => {
-          console.log(err)
-          this.loginMsg = 'Cant login'
+        .catch(() => {
+          this.email = ''
+          this.password = ''
+          this.loginMsg = ' Email/Password is wrong'
           this.colorMsg = 'red'
         })
     }
@@ -106,5 +112,10 @@ export default {
   h1 {
     font-family: 'Nunito', sans-serif;
     color: grey
+  }
+  #loginMsg {
+    color: transparent;
+    transition: 1s;
+    font-style: italic;
   }
 </style>

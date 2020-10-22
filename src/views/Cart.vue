@@ -1,11 +1,14 @@
 <template>
   <div class="col-md-7" id="cart">
+    <div style="margin-top: 20%">
       <CardRow
         v-for="product in products"
         :key="product.id"
         :product="product"
       />
     <v-btn class="mt-3" @click="continueShooping">Continue Shooping</v-btn>
+    <v-btn class="mt-3 ml-3"><router-link to="/history-cart" id="history_cart_btn">History Cart</router-link></v-btn>
+    </div>
   </div>
 </template>
 
@@ -34,7 +37,10 @@ export default {
 
 <style scoped>
   #cart {
-    margin-top: 7% !important;
     margin: auto;
+  }
+  #history_cart_btn {
+    text-decoration: none !important;
+    color: black
   }
 </style>

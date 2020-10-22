@@ -19,7 +19,10 @@ export default new Vuex.Store({
     amount: 0,
     isLogin: false,
     cartItems: [],
-    subtotal: 0
+    subtotal: 0,
+    backgroundColor: 'white',
+    brightnessIcon: 'brightness_5',
+    carts: []
   },
   mutations: {
     SET_STEP (state, value) {
@@ -48,6 +51,15 @@ export default new Vuex.Store({
     },
     SET_SUBTOTAL (state, value) {
       state.subtotal = value
+    },
+    SET_BACKGROUND_COLOR (state, value) {
+      state.backgroundColor = value
+    },
+    SET_BRIGHTNESS_ICON (state, value) {
+      state.brightnessIcon = value
+    },
+    SET_CARTS (state, payload) {
+      state.carts = payload
     }
   },
   actions: {
@@ -84,7 +96,7 @@ export default new Vuex.Store({
           context.commit('SET_PRODUCTS', data)
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     },
     fetchProductById (context, id) {
@@ -96,7 +108,7 @@ export default new Vuex.Store({
           context.commit('SET_SELECTED_PRODUCT', data)
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     },
     changeIsLogin (context, value) {
@@ -115,15 +127,14 @@ export default new Vuex.Store({
           subtotal: (payload.amount * payload.price)
         }
       })
-        .then(() => {
-          console.log('success_add')
+        .then(Response => {
+          console.log(Response)
         })
-        .catch(() => {
-          console.log('failed add')
+        .catch(err => {
+          console.log(err)
         })
     },
     fetchCart (context) {
-      console.log('masuuk')
       axios({
         url: 'https://frozen-inlet-96730.herokuapp.com/cart',
         method: 'GET',
@@ -135,7 +146,7 @@ export default new Vuex.Store({
           context.commit('SET_CART_ITEMS', data)
         })
         .catch(err => {
-          console.log(err)
+          throw err
         })
     },
     editCartPlus (context, payload) {
@@ -193,6 +204,21 @@ export default new Vuex.Store({
           price: payload.price
         }
       })
+    },
+    fetchHistoryCart (context) {
+      axios({
+        url: 'https://frozen-inlet-96730.herokuapp.com/cart/user/history',
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then(({ data }) => {
+          context.commit('SET_CARTS', data)
+        })
+        .catch(err => {
+          throw err
+        })
     }
   }
 })

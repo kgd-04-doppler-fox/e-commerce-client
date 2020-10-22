@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{background: backgroundColor}">
     <Navbar/>
     <router-view/>
     <Footer/>
@@ -11,6 +11,11 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 export default {
   name: 'App',
+  computed: {
+    backgroundColor () {
+      return this.$store.state.backgroundColor
+    }
+  },
   components: {
     Navbar,
     Footer

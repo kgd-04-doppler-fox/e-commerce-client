@@ -10,9 +10,6 @@ import ProductBoard from '../components/ProductBoard'
 import Caroussel from '../components/Carousel'
 export default {
   name: 'Dashboard',
-  data: () => ({
-    Category: ['Top', 'Bottom']
-  }),
   components: {
     ProductBoard,
     Caroussel

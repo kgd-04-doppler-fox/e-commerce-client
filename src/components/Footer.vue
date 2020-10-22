@@ -33,7 +33,7 @@ export default {
     bottom: 0%;
     left: 0px;
     width: 100%;
-    height: 200px;
+    height: 8%;
     padding: 8px 0px;
   }
   #socmed {

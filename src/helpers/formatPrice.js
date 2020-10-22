@@ -40,7 +40,6 @@ function formatPrice (price) {
       }
     }
   }
-  console.log(formatedPrice, '<<<<<<<< dari helpers')
   return 'Rp. ' + formatedPrice
 }
 
