@@ -1,0 +1,107 @@
+#app {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.router-link-exact-active {
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #4EB883;
+}
+
+.badge-success {
+    background-color: #4EB883;
+}
+
+.card-product {
+    border-radius: 15px;
+}
+
+.card-img-top {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item.active {
+    font-weight: bold;
+    color: black;
+}
+
+
+.img-fluid {
+    border-radius: 15px;
+}
+
+
+.Form{
+    background-color: rgb(46, 140, 140);
+}
+
+.row-login{
+    background-color: whitesmoke;
+    border-radius: 30px;
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: teal;
+    color: whitesmoke;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn1:hover{
+    background-color: whitesmoke;
+    border: 1px solid;
+    color: black;
+}
+
+h1{
+    font-size: 40px;
+    color:olive;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+label{
+    font-size: 19px;
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+.form-add{
+    background: rgba(255, 255, 255, 0.2);
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 2px solid white;
+}
+
+.container-add{
+    color: brown
+}
+
+.btn-add{
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 100%;
+    font-size: 19px;
+    border-radius: 100px;   
+}
+.register{
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: -1px, 1px, 60px, 10px;
+}
+
+#img-tr{
+    width: 150px;
+}
+
