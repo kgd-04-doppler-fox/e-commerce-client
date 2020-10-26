@@ -60,6 +60,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.navbar-nav{
+  align-items: center;
+}
 </style>

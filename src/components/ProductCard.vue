@@ -1,29 +1,30 @@
 <template>
-  <div>
-      <li class="card col-sm-10" style="width: 18rem;">
+      <li class="card col-12 col-sm-8 col-md-6 col-lg-4" style="width: 18rem">
         <img :src="product.img_url"
-        class="mr-3 rounded"
+        class="card-img-top img-fluid d-block mx-auto mb-3"
         alt="cover"
-        width="100%">
-        <div class="media-body p-1">
-        <div class="text-left">
-            <h5 class="mt-0 mb-0 text-pink">{{product.name}}</h5>
+        >
+        <div class="card-body">
+          <h4 class="card-title">{{product.name}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Stock {{product.stock}}</h6>
+          <p class="card-text">{{product.description}}</p>
+          <div v-if="error" class="container text-center">
+          <p class="text-danger" id="error">{{error}}</p>
+          </div>
         </div>
-        <div class="text-left mt-2">
-            <p class="text-muted">{{product.description}}</p>
-            <p class="text-muted">Stock: {{product.stock}}</p>
-            <p class="text-muted">USD {{product.price}}</p>
-            <button class="btn btn-pink float-right rounded text-light shadow"
-            style="font-size:10px"
-            @click.prevent="addCart(product.id)"
-            >Add To Cart</button>
-        </div>
-        <div v-if="error" class="container text-center">
-        <p class="text-danger" id="error">{{error}}</p>
-        </div>
+        <div class="buy d-flex justify-content-between align-items-center">
+          <div class="price text-success">
+            <h5 class="mt-4">
+            USD {{product.price}}
+            </h5>
+          </div>
+              <a class="btn btn-danger"
+              @click.prevent="addCart(product.id)"
+              >
+              <i class="fas fa-shopping-cart"></i>
+              Add To Cart</a>
         </div>
       </li>
-  </div>
 </template>
 
 <script>
@@ -67,5 +68,13 @@ export default {
 </script>
 
 <style>
-
+body {
+    min-height: 100vh;
+    background: #fafafa;
+}
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
 </style>

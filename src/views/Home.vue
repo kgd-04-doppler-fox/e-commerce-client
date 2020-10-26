@@ -9,7 +9,7 @@
                 <ProductCard v-for="product in products"
                 :key="product.id"
                 :product="product"
-                class="row"/>
+                />
               </div>
             </div>
         </div>
