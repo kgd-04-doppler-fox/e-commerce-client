@@ -67,12 +67,12 @@ export default {
         password: this.password
       })
         .then(({ data }) => {
-          console.log(data, 'data masuk login')
+          this.$swal('WELCOME', 'Login Succesfull', 'success')
           localStorage.setItem('access_token', data.access_token)
           this.$store.commit('SET_LOGIN', { loggedIn: true })
         })
         .catch(err => {
-          this.$store.commit('SET_ERROR', err.response.data.msg)
+          this.$swal(err.response.data.msg)
         })
     }
   }
@@ -80,6 +80,31 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+  color: #444;
+}
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  background-color: #42b983;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 4px;
+}
+
 #p1{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

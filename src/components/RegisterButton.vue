@@ -71,10 +71,10 @@ export default {
         }
       })
         .then(({ data }) => {
-          this.$store.commit('SET_ERROR', 'You can login now')
+          this.$swal(data)
         })
         .catch(err => {
-          this.$store.commit('SET_ERROR', err.response.data.msg)
+          this.$swal((err.response.data.msg).split('=')[1])
         })
     }
   }

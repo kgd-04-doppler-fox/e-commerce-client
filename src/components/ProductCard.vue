@@ -59,8 +59,7 @@ export default {
           this.$router.push('/cart')
         })
         .catch(err => {
-          console.log(err)
-          this.$store.commit('SET_ERROR', 'Login First!')
+          this.$swal(err.response.data.msg)
         })
     }
   }
