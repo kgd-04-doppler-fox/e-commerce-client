@@ -17,14 +17,10 @@
         <li class="nav-item" v-if="!loggedIn">
             <LoginButton />
         </li>
-        <li class="nav-item" v-if="loggedIn"><router-link to="/history">
-          <button class="btn btn-outline-success my-2 my-sm-0">History</button>
-          </router-link>
-        </li>
-        <li class="nav-item" v-if="loggedIn"><router-link to="/cart">
-          <button class="btn btn-outline-info my-2 my-sm-0">Cart</button>
-          </router-link>
-        </li>
+        <li class="fas fa-history" v-if="loggedIn">
+          <router-link to="/history"> History</router-link></li>
+        <li class="fas fa-shopping-cart" v-if="loggedIn">
+          <router-link to="/cart"> Cart</router-link></li>
         <li class="nav-item" v-if="loggedIn"><router-link to="/">
           <button class="btn btn-outline-danger my-2 my-sm-0" @click="logout">Logout</button>
           </router-link>
@@ -55,6 +51,7 @@ export default {
       this.$store.commit('SET_LOGIN', {
         loggedIn: false
       })
+      this.$swal('Logout Successfull')
     },
     goToHome () {
       this.$router.push('/')

@@ -43,40 +43,63 @@ export default {
   props: ['cart'],
   methods: {
     deleteCart (id) {
-      const reConfirm = confirm('Are you sure want to delete this product ?')
-      if (reConfirm) {
-        axios({
-          method: 'DELETE',
-          url: `https://fierce-hollows-88977.herokuapp.com/carts/${id}`,
-          headers: {
-            access_token: localStorage.getItem('access_token')
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'Once paid, refund would take some process!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            axios({
+              method: 'DELETE',
+              url: `https://fierce-hollows-88977.herokuapp.com/carts/${id}`,
+              headers: {
+                access_token: localStorage.getItem('access_token')
+              }
+            })
+              .then(({ data }) => {
+                this.$swal(data.msg)
+                this.$store.dispatch('fetchCarts')
+              })
+              .catch(err => {
+                this.error = err.response.data.msg
+              })
+          } else {
+            this.$swal('Item is not deleted')
           }
         })
-          .then(({ data }) => {
-            this.$store.dispatch('fetchCarts')
-          })
-          .catch(err => {
-            this.error = err.response.data.msg
-          })
-      }
     },
     payCart (id) {
-      const reConfirm = confirm('Are you sure want to buy this product ?')
-      if (reConfirm) {
-        axios({
-          method: 'PATCH',
-          url: `https://fierce-hollows-88977.herokuapp.com/carts/${id}/pay`,
-          headers: {
-            access_token: localStorage.getItem('access_token')
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'Once paid, refund would take some process!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      })
+        .then((willPay) => {
+          if (willPay) {
+            axios({
+              method: 'PATCH',
+              url: `https://fierce-hollows-88977.herokuapp.com/carts/${id}/pay`,
+              headers: {
+                access_token: localStorage.getItem('access_token')
+              }
+            })
+              .then(({ data }) => {
+                console.log({ data })
+                this.$swal(`Paid ${data.updateProduct[1][0].name} for USD ${data.updateProduct[1][0].price}`)
+                this.$store.dispatch('fetchCarts')
+              })
+              .catch(err => {
+                this.error = err.response.data.msg
+              })
+          } else {
+            this.$swal('You can pay it later!')
           }
         })
-          .then(({ data }) => {
-            this.$store.dispatch('fetchCarts')
-          })
-          .catch(err => {
-            this.error = err.response.data.msg
-          })
-      }
     },
     updateAmount (id) {
       axios({
