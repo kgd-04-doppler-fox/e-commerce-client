@@ -10,6 +10,8 @@
         </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div v-if="!userName" class="text-info">Login first</div>
+        <div id="user" class="text-success" v-else>{{userName}} is login</div>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item active" v-if="!loggedIn">
             <RegisterButton />
@@ -43,6 +45,9 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.loggedIn
+    },
+    userName () {
+      return this.$store.state.userName
     }
   },
   methods: {
@@ -51,6 +56,7 @@ export default {
       this.$store.commit('SET_LOGIN', {
         loggedIn: false
       })
+      this.$store.commit('SET_USERNAME', false)
       this.$swal('Logout Successfull')
     },
     goToHome () {
@@ -63,5 +69,8 @@ export default {
 <style scoped>
 .navbar-nav{
   align-items: center;
+}
+#user{
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 </style>

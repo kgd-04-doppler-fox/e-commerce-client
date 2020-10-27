@@ -1,7 +1,7 @@
 <template>
       <li class="card col-12 col-sm-8 col-md-6 col-lg-4" style="width: 18rem">
         <img :src="product.img_url"
-        class="card-img-top img-fluid d-block mx-auto mb-3"
+        class="card-img-top"
         alt="cover"
         >
         <div class="card-body">
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
     min-height: 100vh;
     background: #fafafa;
@@ -75,6 +75,6 @@ body {
 .card-img-top {
     width: 100%;
     height: 10vw;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 </style>

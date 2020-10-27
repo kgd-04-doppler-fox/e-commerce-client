@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import jwt from 'jsonwebtoken'
 export default {
   name: 'LoginButton',
   data () {
@@ -67,8 +68,10 @@ export default {
         password: this.password
       })
         .then(({ data }) => {
+          const decoded = jwt.verify(data.access_token, 'rahasia')
           this.$swal('WELCOME', 'Login Succesfull', 'success')
           localStorage.setItem('access_token', data.access_token)
+          this.$store.commit('SET_USERNAME', decoded.email)
           this.$store.commit('SET_LOGIN', { loggedIn: true })
         })
         .catch(err => {

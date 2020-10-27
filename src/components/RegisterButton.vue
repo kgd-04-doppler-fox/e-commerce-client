@@ -71,7 +71,7 @@ export default {
         }
       })
         .then(({ data }) => {
-          this.$swal(data)
+          this.$swal(`${data.email} is created ! Be sure to login first !`)
         })
         .catch(err => {
           this.$swal((err.response.data.msg).split('=')[1])

@@ -35,6 +35,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.mt-5{
+  object-fit: scale-down;
+}
 </style>

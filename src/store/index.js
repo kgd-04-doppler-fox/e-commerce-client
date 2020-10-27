@@ -10,7 +10,8 @@ export default new Vuex.Store({
     loggedIn: false,
     error: [],
     carts: [],
-    histories: []
+    histories: [],
+    userName: ''
   },
   mutations: {
     SET_PRODUCTS (state, payload) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     SET_HISTORIES (state, payload) {
       state.histories = payload
+    },
+    SET_USERNAME (state, payload) {
+      state.userName = payload
     }
   },
   actions: {

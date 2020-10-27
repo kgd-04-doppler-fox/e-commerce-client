@@ -116,7 +116,8 @@ export default {
           this.$store.dispatch('fetchCarts')
         })
         .catch(err => {
-          this.error = err.response.data.err.name
+          console.log(err)
+          this.$swal(err.response.data.err.name)
         })
     }
   }
