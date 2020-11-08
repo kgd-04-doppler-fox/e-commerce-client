@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     products: [],
     loggedIn: false,
-    error: [],
     carts: [],
     histories: [],
     userName: ''
@@ -19,9 +18,6 @@ export default new Vuex.Store({
     },
     SET_LOGIN (state, payload) {
       state.loggedIn = payload.loggedIn
-    },
-    SET_ERROR (state, payload) {
-      state.error = payload
     },
     SET_CARTS (state, payload) {
       state.carts = payload
@@ -56,7 +52,7 @@ export default new Vuex.Store({
           context.commit('SET_PRODUCTS', data.product)
         })
         .catch(err => {
-          context.commit('SET_ERROR', err)
+          console.log(err)
         })
     },
     fetchCarts (context) {
@@ -71,7 +67,7 @@ export default new Vuex.Store({
           context.commit('SET_CARTS', data.cart)
         })
         .catch(err => {
-          context.commit('SET_ERROR', err)
+          console.log(err)
         })
     },
     getHistories (context) {
@@ -87,7 +83,7 @@ export default new Vuex.Store({
           context.commit('SET_HISTORIES', data.cart)
         })
         .catch(err => {
-          context.commit('SET_ERROR', err)
+          console.log(err)
         })
     }
   }

@@ -36,8 +36,7 @@ export default {
   name: 'CartRow',
   data () {
     return {
-      amount: '',
-      error: ''
+      amount: ''
     }
   },
   props: ['cart'],
@@ -45,7 +44,7 @@ export default {
     deleteCart (id) {
       this.$swal({
         title: 'Are you sure?',
-        text: 'Once paid, refund would take some process!',
+        text: 'Once delete, you need to add again via homepage!',
         icon: 'warning',
         buttons: true,
         dangerMode: true
@@ -89,7 +88,6 @@ export default {
               }
             })
               .then(({ data }) => {
-                console.log({ data })
                 this.$swal(`Paid ${data.updateProduct[1][0].name} for USD ${data.updateProduct[1][0].price}`)
                 this.$store.dispatch('fetchCarts')
               })
@@ -116,8 +114,7 @@ export default {
           this.$store.dispatch('fetchCarts')
         })
         .catch(err => {
-          console.log(err)
-          this.$swal(err.response.data.err.name)
+          this.$swal(err.response.data.msg)
         })
     }
   }

@@ -28,9 +28,6 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-info">Submit</button>
                 </div>
-                <div v-if="error" class="container text-center">
-                    <p class="text-danger" id="error">{{error}}</p>
-                </div>
                 </form>
             </div>
             </div>
@@ -47,18 +44,7 @@ export default {
   data () {
     return {
       email: '',
-      password: '',
-      error: ''
-    }
-  },
-  computed: {
-    SET_ERROR () {
-      return this.$store.state.error
-    }
-  },
-  watch: {
-    SET_ERROR () {
-      this.error = this.SET_ERROR
+      password: ''
     }
   },
   methods: {

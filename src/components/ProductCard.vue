@@ -8,9 +8,6 @@
           <h4 class="card-title">{{product.name}}</h4>
           <h6 class="card-subtitle mb-2 text-muted">Stock {{product.stock}}</h6>
           <p class="card-text">{{product.description}}</p>
-          <div v-if="error" class="container text-center">
-          <p class="text-danger" id="error">{{error}}</p>
-          </div>
         </div>
         <div class="buy d-flex justify-content-between align-items-center">
           <div class="price text-success">
@@ -34,17 +31,6 @@ export default {
   props: ['product'],
   data () {
     return {
-      error: ''
-    }
-  },
-  computed: {
-    SET_ERROR () {
-      return this.$store.state.error
-    }
-  },
-  watch: {
-    SET_ERROR () {
-      this.error = this.SET_ERROR
     }
   },
   methods: {

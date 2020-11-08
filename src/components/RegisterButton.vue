@@ -46,18 +46,7 @@ export default {
   data () {
     return {
       email: '',
-      password: '',
-      error: ''
-    }
-  },
-  computed: {
-    SET_ERROR () {
-      return this.$store.state.error
-    }
-  },
-  watch: {
-    SET_ERROR () {
-      this.error = this.SET_ERROR
+      password: ''
     }
   },
   methods: {
